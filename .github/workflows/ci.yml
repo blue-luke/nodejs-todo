@@ -33,3 +33,4 @@ jobs:
           context: .
           push: true
           tags: todo
+          labels: ${{ steps.meta.outputs.labels }}
