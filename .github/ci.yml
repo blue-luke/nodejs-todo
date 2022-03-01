@@ -1,0 +1,12 @@
+name: hello-ci
+on: 
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  greeter:
+    runs-on: ubuntulatest
+    steps:
+      -name: ci-workflow-test
+      run: echo "Hello World!"
