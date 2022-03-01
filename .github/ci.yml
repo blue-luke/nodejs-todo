@@ -1,8 +1,6 @@
 name: hello-ci
-on: 
-  push:
-    branches-ignore:
-      - master
+on: push
+
 
 jobs:
   greeter:
