@@ -9,6 +9,7 @@ on:
       - 'master'
 
 jobs:
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -21,6 +22,23 @@ jobs:
         run: npm install
       - run: npm run build --if-present
       - run: npm test
+
+  setup-gcloud:
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v0'
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
+
   docker:
     runs-on: ubuntu-latest
     steps:
