@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-deployment
+  name: nodejs-todo-deployment
   labels:
-    app: todo
+    app: nodejs-todo
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: todo
+      app: nodejs-todo
   template:
     metadata:
       labels:
-        app: todo
+        app: nodejs-todo
     spec:
       containers:
-      - name: todo
+      - name: nodejs-todo
         image: blueluke/practice:todo
         ports:
         - containerPort: 80
