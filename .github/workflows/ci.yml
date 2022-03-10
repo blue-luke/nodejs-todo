@@ -26,9 +26,6 @@ jobs:
   setup-gcloud:
     # Add "id-token" with the intended permissions.
     runs-on: node 16
-    permissions:
-      contents: 'read'
-      id-token: 'write'
     steps:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
