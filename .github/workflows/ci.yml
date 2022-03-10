@@ -8,6 +8,13 @@ on:
     branches:
       - 'master'
 
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: josue-gke-exp # Add your cluster name here.
+  GKE_ZONE: europe-west2 # Add your cluster zone here.
+  DEPLOYMENT_NAME: luke-experiment # Add your deployment name here.
+  IMAGE: blueluke/practice:todo
+
 jobs:
 
   test:
@@ -48,13 +55,6 @@ jobs:
           push: true
           tags: blueluke/practice:todo
           labels: ${{ steps.meta.outputs.labels }}
-
-env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: josue-gke-exp # Add your cluster name here.
-  GKE_ZONE: europe-west2 # Add your cluster zone here.
-  DEPLOYMENT_NAME: luke-experiment # Add your deployment name here.
-  IMAGE: blueluke/practice:todo
 
   setup-build-publish-deploy:
     name: Setup, Build, Publish #, and Deploy
