@@ -34,10 +34,21 @@ jobs:
       uses: 'google-github-actions/auth@v0'
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - id: 'get-credentials'
+      uses: 'google-github-actions/get-gke-credentials@v0'
+      with:
+        cluster_name: 'josue-gke-exp'
+        location: 'europe-west2'
+
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
+
     - name: 'Use gcloud CLI'
       run: 'gcloud info'
+
+    - id: 'get-pods'
+      run: 'kubectl get pods'
 
   docker:
     runs-on: ubuntu-latest
